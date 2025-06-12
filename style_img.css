@@ -3,29 +3,65 @@
 /* --------------------------------------------------- */
 /* SEZIONI CON IMMAGINE O VIDEO AFFIANCATI AL TESTO (TESTO + MEDIA ESTERNO) */
 /* --------------------------------------------------- */
+.content-section {
+    /* Aumenta il margine inferiore per una separazione molto evidente tra le sezioni */
+    margin-bottom: 80px; /* Aumentato ulteriormente per uno stacco netto */
+    
+    /* Padding interno per dare "aria" al contenuto di ogni sezione */
+    padding: 40px; /* Aumentato il padding interno */
+    
+    /* Rimuovi completamente il bordo inferiore se vuoi solo spaziatura */
+    border-bottom: none; /* Rimosso completamente */
+    
+    /* Colore di sfondo leggermente diverso per distinguere ogni blocco */
+    background-color: #ffffff; /* Sfondo bianco per staccarle dallo sfondo della pagina */
+    
+    border-radius: 12px; /* Arrotonda gli angoli delle sezioni per un look più moderno */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12); /* Ombra più pronunciata per farle "galleggiare" */
+
+    /* Aggiungi una piccola transizione per effetti futuri se decidi di aggiungerli (es. hover) */
+    transition: all 0.3s ease-in-out; 
+}
+
+/* Regola per l'ultima sezione, per evitare un margine eccessivo alla fine della pagina */
+.page-content .content-section:last-child {
+    margin-bottom: 0;
+}
+
+
+/* Assicurati che il padding sul main non crei spazi indesiderati in cima se le sezioni hanno padding */
+main.page-content {
+    /* Il padding qui è per lo spazio generale attorno a tutte le sezioni */
+    padding-top: 50px; 
+    padding-bottom: 50px;
+    padding-left: 20px; /* Assicurati che ci sia un po' di spazio ai lati */
+    padding-right: 20px;
+    max-width: 1200px; /* Limita la larghezza massima del contenuto per leggibilità */
+    margin: 0 auto; /* Centra il contenuto della pagina */
+}
+
 .content-block.content-with-media {
     display: flex;
+    flex-direction: row; /* Il testo è a sinistra, il media a destra */
     align-items: flex-start; /* Allinea il testo e il media in alto */
-    gap: 40px; /* Spazio tra testo e media */
-    margin-bottom: 40px;
-    padding-top: 20px;
+    gap: 50px; /* Spazio tra testo e media aumentato */
     flex-wrap: wrap; /* Permette al layout di andare a capo su schermi piccoli */
 }
 
 /* Stili per il blocco di testo principale */
 .content-block.content-with-media .text-content {
     flex: 3; /* Il testo occupa 3/4 dello spazio disponibile */
-    min-width: 300px; /* Larghezza minima per il blocco di testo */
+    min-width: 350px; /* Larghezza minima per il blocco di testo leggermente aumentata */
 }
 
 /* CONTENITORE PER IMMAGINI AFFIANCATE SOTTO IL TESTO (es. Apicoltura e Tartufo) */
-.images-below-text-flex-container { 
-    display: flex; 
+.images-below-text-flex-container {
+    display: flex;
     justify-content: center; /* Centra le immagini orizzontalmente */
     align-items: flex-start; /* Allinea le immagini in alto */
     gap: 30px; /* Spazio tra le immagini */
-    margin-top: 20px; 
-    width: 100%; 
+    margin-top: 20px;
+    width: 100%;
     flex-wrap: wrap; /* ESSENZIALE: Permette alle immagini di andare a capo se non c'è spazio sufficiente */
 }
 
@@ -39,35 +75,50 @@
 
 
 /* STILI PER IL MEDIA PRINCIPALE AFFIANCATO (VIDEO/IMMAGINI ESTERNE COME PCTO, HOBBIES VIAGGI, ECC.) */
-.content-block.content-with-media .media-content { 
-    flex: 1; 
-    display: flex; 
-    justify-content: center; 
-    align-items: flex-start; 
-    min-width: 280px; 
-    max-width: 400px; 
+.content-block.content-with-media .media-content {
+    flex: 2; /* Il media occupa 2/5 dello spazio disponibile, giving more space for images */
+    display: flex;
+    flex-direction: column; /* Impila video e immagini verticalmente se sono multipli */
+    justify-content: flex-start; /* Allinea il media in alto */
+    align-items: center; /* Centra il media content within its flex space */
+    min-width: 280px;
+    max-width: 600px; /* Increased maximum width for media content */
+    gap: 20px; /* Spazio tra gli elementi media se ce ne sono più di uno */
+    margin-left: auto; /* Spinge il media content a right, still centering its content */
 }
 
+/* Stili per il contenitore di immagini sotto un video all'interno del media-content */
+.media-content .images-below-video {
+    display: flex;
+    flex-direction: column; /* Impila le immagini verticalmente */
+    gap: 15px; /* Spazio tra le immagini */
+    width: 100%; /* Occupa tutta la larghezza del genitore .media-content */
+    align-items: center; /* Center the images horizontally */
+}
+
+
 .hobby-video {
-    width: 100%; 
-    height: auto; 
-    display: block; 
-    border-radius: 15px; 
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 
-                0 0 0 5px rgba(255, 215, 0, 0.6); 
-    transition: transform 0.3s ease, box-shadow 0.3s ease; 
-    border: 3px solid rgba(255, 215, 0, 0.8); 
+    width: 100%;
+    max-width: 70%; /* Smaller video size */
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Center the video */
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4),
+                0 0 0 5px rgba(255, 215, 0, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 3px solid rgba(255, 215, 0, 0.8);
 }
 
 .hobby-video:hover {
-    transform: translateY(-8px) scale(1.02); 
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 
-                0 0 0 8px rgba(255, 215, 0, 0.9); 
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6),
+                0 0 0 8px rgba(255, 215, 0, 0.9);
 }
 
 /* Stile per l'immagine introduttiva (PCTO) */
 .introduction-image {
-    width: 100%; 
+    width: 100%;
     height: auto;
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
@@ -75,100 +126,203 @@
 
 /* Stile per l'immagine di apicoltura (GRANDE) */
 .apicoltura-image-below {
-    width: 100%; 
-    max-width: 300px; 
-    min-width: 300px; 
+    width: 100%;
+    max-width: 400px; /* Increased size */
+    min-width: 350px; /* Increased size */
     height: auto;
-    border-radius: 8px; 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); 
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     transition: transform 0.2s ease;
 }
 
 .apicoltura-image-below:hover {
-    transform: scale(1.05); 
+    transform: scale(1.05);
 }
 
 /* STILE PER L'IMMAGINE DEL TARTUFO (GRANDE) */
 .tartufo-image-below {
-    width: 100%; 
-    max-width: 300px; 
-    min-width: 300px; 
+    width: 100%;
+    max-width: 400px; /* Increased size */
+    min-width: 350px; /* Increased size */
     height: auto;
-    border-radius: 8px; 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); 
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     transition: transform 0.2s ease;
 }
 
 .tartufo-image-below:hover {
-    transform: scale(1.05); 
+    transform: scale(1.05);
 }
 
 
 /* STILE PER L'IMMAGINE DELLA SEZIONE VIAGGI (affiancata al testo) */
 .travel-image {
-    width: 100%; 
+    width: 100%;
     height: auto;
-    border-radius: 12px; 
+    border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
 }
 
 .travel-image:hover {
-    transform: scale(1.03); 
+    transform: scale(1.03);
 }
 
 /* STILE PER L'IMMAGINE DELLA SEZIONE MOTO (affiancata al testo) */
 .moto-image {
-    width: 100%; 
+    width: 100%;
     height: auto;
-    border-radius: 12px; 
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); 
-    transition: transform 0.3s ease; 
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0 3s ease;
 }
 
 .moto-image:hover {
-    transform: scale(1.03); 
+    transform: scale(1.03);
 }
 
 /* STILE PER L'IMMAGINE DELLA SEZIONE SPORT (sotto il testo, ancora più grande) */
-.sport-image-below{   
-    width: 100%; 
-    max-width: 700px; 
-    min-width: 400px; 
+.sport-image-below{
+    width: 100%;
+    max-width: 800px; /* Increased size */
+    min-width: 500px; /* Increased size */
     height: auto;
-    border-radius: 12px; 
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); 
-    transition: transform 0.3s ease; 
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
 .sport-image-below:hover {
-    transform: scale(1.03); 
+    transform: scale(1.03);
 }
 
 /* NUOVI STILI PER LE IMMAGINI DEL LAVORO (affiancate) */
-.work-images-flex-container { 
-    display: flex; 
+.work-images-flex-container {
+    display: flex;
     justify-content: center; /* Centra le immagini orizzontalmente */
     align-items: flex-start; /* Allinea le immagini in alto */
     gap: 20px; /* Spazio tra le immagini del lavoro */
     margin-top: 30px; /* Spazio sopra le immagini */
-    width: 100%; 
+    width: 100%;
     flex-wrap: wrap; /* Permette alle immagini di andare a capo */
 }
 
 .work-image {
     width: 100%; /* Si adatta al contenitore flex */
-    max-width: 280px; /* Larghezza massima per ogni immagine del lavoro (puoi aumentarla) */
-    min-width: 200px; /* Larghezza minima per non farle rimpicciolire troppo su desktop */
+    max-width: 350px; /* Increased size */
+    min-width: 250px; /* Increased size */
     height: auto;
-    border-radius: 8px; 
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); 
-    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    border-radius: 8px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .work-image:hover {
-    transform: translateY(-5px) scale(1.04); 
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); 
+    transform: translateY(-5px) scale(1.04);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Stile per l'immagine di descrizione dell'impresa (PCTO) */
+.description-image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Stile per l'immagine del periodo (PCTO) */
+.period-image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Stile per le immagini di valutazione (PCTO) */
+.valutazione-image {
+    width: 100%; /* Occupa tutta la larghezza del suo genitore (.images-below-video) */
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Stile per videos inside content-block.content-with-media .media-content (pcto.html) */
+.content-video {
+    width: 100%;
+    max-width: 70%; /* Make video smaller */
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Center the video */
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+
+/* --------------------------------------------------- */
+/* NUOVI STILI PER ICONE SOCIAL (contatti.html) - MODIFICATI PER ESSERE MENO ACCATTIVANTI E SENZA SOLLEVAMENTO */
+/* --------------------------------------------------- */
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 40px; /* Spazio tra le icone social */
+    margin-top: 40px;
+    flex-wrap: wrap; /* Per la responsività su schermi piccoli */
+}
+
+.social-icon-link {
+    display: flex;
+    align-items: center; /* Allinea immagine e testo verticalmente */
+    text-decoration: none; /* Rimuove la sottolineatura di default */
+    color: #333; /* Colore di base per il testo del link */
+    transition: color 0.3s ease; /* Transizione solo per il colore */
+    padding: 5px 10px; /* Padding ridotto */
+    border-radius: 5px; /* Bordi leggermente arrotondati */
+    /* Rimozione di background-color e box-shadow per un look più sobrio */
+    /* Rimossa la trasformazione di default */
+}
+
+.social-icon-link:hover {
+    color: #007bff; /* Cambia colore del testo al hover (puoi scegliere un colore più neutro se preferisci) */
+    /* Rimossa la trasformazione e la box-shadow al hover */
+}
+
+.social-icon {
+    width: 45px; /* Dimensione delle icone social leggermente ridotta */
+    height: 45px;
+    vertical-align: middle;
+    border-radius: 0; /* Rimuovi border-radius per icone non rotonde */
+    margin-right: 10px; /* Spazio tra l'icona e il testo */
+    transition: transform 0.2s ease; /* Mantieni una leggera transizione per l'ingrandimento */
+}
+
+.social-icon-link:hover .social-icon {
+    transform: scale(1.05); /* Effetto leggero sull'icona al passaggio del mouse */
+}
+
+.social-text {
+    font-size: 1.4em; /* Dimensione del testo del social leggermente ridotta */
+    font-weight: 600; /* Peso del font leggermente ridotto */
+}
+
+/* Stile per l'email contact */
+.email-contact {
+    margin-top: 50px;
+    font-size: 1.2em;
+    color: #555;
+    padding-bottom: 20px;
+}
+
+.email-contact a {
+    color: #007bff; /* Colore link email */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.email-contact a:hover {
+    color: #0056b3; /* Colore link email al passaggio del mouse */
+    text-decoration: underline;
 }
 
 
@@ -178,41 +332,47 @@
 @media (max-width: 900px) {
     /* Responsive per sezioni con immagine o video affiancati (testo + media) */
     .content-block.content-with-media {
-        flex-direction: column; 
-        align-items: center; 
-        gap: 25px; 
+        flex-direction: column; /* Impila il contenuto verticalmente su schermi piccoli */
+        align-items: center; /* Centra gli elementi impilati */
+        gap: 25px;
+    }
+
+    .content-section {
+        margin-bottom: 40px; /* Riduci il margine inferiore su mobile */
+        padding: 20px; /* Riduci il padding su mobile */
     }
 
     .content-block.content-with-media .text-content {
-        flex: none; 
-        width: 100%; 
-        min-width: unset; 
+        flex: none;
+        width: 100%;
+        min-width: unset;
+        text-align: center; /* Centra il testo su schermi piccoli */
     }
 
     /* Modifiche per il contenitore delle immagini sotto il testo su mobile (Hobbies) */
-    .images-below-text-flex-container { 
-        flex-direction: column; 
+    .images-below-text-flex-container {
+        flex-direction: column;
         justify-content: center;
-        gap: 15px; 
-        margin-top: 15px; 
+        gap: 15px;
+        margin-top: 15px;
     }
 
     /* Riduci le dimensioni massime e minime delle immagini sotto il testo su mobile (Hobbies) */
-    .apicoltura-image-below, .tartufo-image-below { 
-        max-width: 250px; 
-        min-width: 200px; 
+    .apicoltura-image-below, .tartufo-image-below {
+        max-width: 90%; /* Increased for mobile responsiveness */
+        min-width: 250px; /* Adjusted for mobile */
     }
 
     /* Immagine Sport su mobile */
     .single-image-below-text-container {
-        flex-direction: column; 
+        flex-direction: column;
         align-items: center;
         margin-top: 15px;
     }
 
     .sport-image-below {
-        max-width: 90%; 
-        min-width: 250px; 
+        max-width: 90%;
+        min-width: 250px;
     }
 
     /* Modifiche per il contenitore delle immagini del lavoro su mobile */
@@ -222,21 +382,65 @@
     }
 
     .work-image {
-        max-width: 80%; /* Riduci la larghezza massima per mobile */
-        min-width: 180px; /* Assicurati che non diventi troppo piccola */
+        max-width: 90%; /* Increased for mobile responsiveness */
+        min-width: 200px; /* Adjusted for mobile */
     }
 
 
-    .content-block.content-with-media .media-content { 
-        flex: none; 
-        width: 80%; 
-        max-width: 100%; 
-        justify-content: center; 
-        align-items: center; 
-        padding-top: 0; 
+    .content-block.content-with-media .media-content {
+        flex: none;
+        width: 90%; /* Occupa more width on mobile */
+        max-width: 100%;
+        justify-content: center; /* Centra il media orizzontalmente su mobile */
+        align-items: center; /* Centra il media orizzontalmente su mobile */
+        padding-top: 0;
     }
-    /* Applica width: 100% a tutte le immagini e video all'interno del media-content (esterni) */
-    .hobby-video, .introduction-image, .travel-image, .moto-image { 
-        width: 100%; 
+    /* Apply width: 100% to all images and videos within the media-content (external) */
+    .introduction-image, .travel-image, .moto-image, .description-image, .period-image, .valutazione-image {
+        width: 100%;
+    }
+
+    .content-video, .hobby-video {
+        width: 100%;
+        max-width: 80%; /* Smaller video size on mobile */
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .media-content .images-below-video {
+        width: 100%; /* Assicura che anche questo contenitore occupi la piena larghezza */
+        align-items: center; /* Centra le immagini su mobile */
+    }
+
+    /* --------------------------------------------------- */
+    /* RESPONSIVE DESIGN per le icone social (contatti.html) su schermi più piccoli */
+    /* --------------------------------------------------- */
+    .social-links {
+        flex-direction: column; /* Impila le icone su schermi piccoli */
+        gap: 20px;
+        align-items: center; /* Centra gli elementi impilati */
+    }
+
+    .social-icon-link {
+        width: auto; /* Adatta la larghezza al contenuto */
+        max-width: 90%; /* Limita la larghezza massima per non farli troppo larghi */
+        justify-content: center; /* Centra icona e testo all'interno del link */
+        padding: 8px 12px; /* Padding leggermente ridotto */
+    }
+
+    .social-icon {
+        width: 35px; /* Riduci la dimensione delle icone su mobile */
+        height: 35px;
+        margin-right: 8px;
+    }
+
+    .social-text {
+        font-size: 1.2em; /* Riduci la dimensione del testo su mobile */
+    }
+
+    .email-contact {
+        font-size: 1em; /* Riduci la dimensione del testo email su mobile */
+        text-align: center;
     }
 }
